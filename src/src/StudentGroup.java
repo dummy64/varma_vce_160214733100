@@ -295,23 +295,28 @@ public class StudentGroup implements StudentArrayOperation {
 
 	@Override
 	public Student[] getNearBirthDate(Date date, int days) {
-	/*	// Add your implementation here
+
 		if(date==null)
-		{
 			throw new IllegalArgumentException();
-		}
-		int index=0;
-		Date d=d
-		for(int i=0;i<students.length;i++)
-		{
-			if(students[i].getBirthDate()==0)
-			{
-				index++;
+		
+		Date d1=new Date(date.getDate()+days);
+		//	Date d2=new Date(date.getDate()-days);
+			int c=0,c1=0;
+			if(date==null)
+				throw new IllegalArgumentException();
+			for(int i=0;i<students.length;i++){
+				if(students[i].getBirthDate()==date || students[i].getBirthDate()==d1 ){
+					c++;
+				}
 			}
-		}
-		Student[] extralist=new Student[index+1];
-		int j=0;*/
-		return null;
+			Student[] s =  new Student[c];
+			for(int i=0;i<students.length;i++){
+				if(students[i].getBirthDate()==date || students[i].getBirthDate()==d1 ){
+					s[c1]=students[i];
+					c1++;
+				}
+			}
+			return s;
 	}
 
 	@Override
@@ -329,7 +334,32 @@ public class StudentGroup implements StudentArrayOperation {
 	@Override
 	public Student[] getStudentsWithMaxAvgMark() {
 		// Add your implementation here
-		return null;
+		int count=0;
+		double maximum=students[0].getAvgMark();
+		for(int i=0;i<students.length;i++)
+		{
+			if(students[i].getAvgMark()>maximum)
+				maximum=students[i].getAvgMark();
+		}
+		for(int i=0;i<students.length;i++)
+		{
+			if(students[i].getAvgMark()==maximum)
+				count++;
+		}
+		
+		for(int i=0;i<students.length;i++)
+		{
+			if(students[i].getAvgMark()==maximum)
+				count++;
+		}
+		Student[] s=new Student[count];
+		count=0;
+		for(int i=0;i<students.length;i++)
+		{
+			s[count]=students[i];
+			count++;
+		}
+		return s;
 	}
 
 	@Override
