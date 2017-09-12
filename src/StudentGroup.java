@@ -295,7 +295,28 @@ public class StudentGroup implements StudentArrayOperation {
 
 	@Override
 	public Student[] getNearBirthDate(Date date, int days) {
-		return null;
+
+		if(date==null)
+			throw new IllegalArgumentException();
+		
+		Date d1=new Date(date.getDate()+days);
+		//	Date d2=new Date(date.getDate()-days);
+			int c=0,c1=0;
+			if(date==null)
+				throw new IllegalArgumentException();
+			for(int i=0;i<students.length;i++){
+				if(students[i].getBirthDate()==date || students[i].getBirthDate()==d1 ){
+					c++;
+				}
+			}
+			Student[] s =  new Student[c];
+			for(int i=0;i<students.length;i++){
+				if(students[i].getBirthDate()==date || students[i].getBirthDate()==d1 ){
+					s[c1]=students[i];
+					c1++;
+				}
+			}
+			return s;
 	}
 
 	@Override
@@ -343,7 +364,19 @@ public class StudentGroup implements StudentArrayOperation {
 
 	@Override
 	public Student getNextStudent(Student student) {
-		// Add your implementation here
-		return null;
+		if(student == null)
+			throw new IllegalArgumentException();
+		
+		int ind=0;
+		for(ind=0;ind<students.length;ind++)
+		{
+			if(students[ind].compareTo(student)==0)
+			{
+				break;
+			}
+		}
+		
+		ind++;
+		return students[ind];
 	}
 }
