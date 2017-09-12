@@ -26,13 +26,13 @@ public class StudentGroup implements StudentArrayOperation {
 	@Override
 	public Student[] getStudents() {
 		
-		return students;
+		return null;
 	}
 
 	@Override
 	public void setStudents(Student[] students) {
 		// Add your implementation here
-		int n=students.length;
+		
 	}
 
 	@Override
