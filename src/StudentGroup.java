@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -248,25 +249,52 @@ public class StudentGroup implements StudentArrayOperation {
 		// Add your implementation here
 		if(date==null)
 			throw new IllegalArgumentException();
+		int index=0;
 		for(int i=0;i<students.length;i++)
 		{
-			if(students[i].getBirthDate().compareTo(date)<=0)
+			if(students[i].getBirthDate().before(date)||students[i].getBirthDate().compareTo(date)==0)
 			{
-				
+				index++;
 			}
 		}
-		return null;
+		Student[] extralist=new Student[index+1];
+		int j=0;
+		for(int i=0;i<extralist.length;i++)
+		{
+			if(students[i].getBirthDate().before(date)||students[i].getBirthDate().compareTo(date)==0)
+			{
+				extralist[j++]=students[i];
+			}
+		}
+		return extralist;
 	}
 
 	@Override
 	public Student[] getBetweenBirthDates(Date firstDate, Date lastDate) {
-		// Add your implementation here
-		return null;
+		if(firstDate==null||lastDate==null)
+			throw new IllegalArgumentException();
+		int index=0;
+		for(int i=0;i<students.length;i++)
+		{
+			if((students[i].getBirthDate().after(firstDate)||students[i].getBirthDate().compareTo(firstDate)==0)&&(students[i].getBirthDate().before(lastDate)||students[i].getBirthDate().compareTo(lastDate)==0))
+			{
+				index++;
+			}
+		}
+		Student[] extralist=new Student[index+1];
+		int j=0;
+		for(int i=0;i<students.length;i++)
+		{
+			if((students[i].getBirthDate().after(firstDate)||students[i].getBirthDate().compareTo(firstDate)==0)&&(students[i].getBirthDate().before(lastDate)||students[i].getBirthDate().compareTo(lastDate)==0))
+			{
+				extralist[j++]=students[i];
+			}
+		}
+		return extralist;
 	}
 
 	@Override
 	public Student[] getNearBirthDate(Date date, int days) {
-		// Add your implementation here
 		return null;
 	}
 
@@ -285,7 +313,32 @@ public class StudentGroup implements StudentArrayOperation {
 	@Override
 	public Student[] getStudentsWithMaxAvgMark() {
 		// Add your implementation here
-		return null;
+		int count=0;
+		double maximum=students[0].getAvgMark();
+		for(int i=0;i<students.length;i++)
+		{
+			if(students[i].getAvgMark()>maximum)
+				maximum=students[i].getAvgMark();
+		}
+		for(int i=0;i<students.length;i++)
+		{
+			if(students[i].getAvgMark()==maximum)
+				count++;
+		}
+		
+		for(int i=0;i<students.length;i++)
+		{
+			if(students[i].getAvgMark()==maximum)
+				count++;
+		}
+		Student[] s=new Student[count];
+		count=0;
+		for(int i=0;i<students.length;i++)
+		{
+			s[count]=students[i];
+			count++;
+		}
+		return s;
 	}
 
 	@Override
